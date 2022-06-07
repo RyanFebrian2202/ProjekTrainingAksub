@@ -53,11 +53,11 @@
                         <td>{{$barang->quantity}}</td>
                         <td>{{$barang->price}}</td>
                         <td class="aksi" style="display: flex; justify-content: center; align-content: center; gap: 5px">
-                            <a class="edit" href=""><button type="submit"
+                            <a class="edit" href="{{route('updatePage',['id'=>$barang->id])}}"><button type="submit"
                                     class="btn btn-success"><i class="uil uil-edit"></i></button></a>
-                            <form action="" method="get"
-                                enctype="multipart/form-data">
+                            <form action="{{route('deleteBarang',['id'=>$barang->id])}}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                @method('delete')
                                 <button type="submit" class="btn btn-danger"><i class="uil uil-times-square"></i></button>
                             </form>
                         </td>

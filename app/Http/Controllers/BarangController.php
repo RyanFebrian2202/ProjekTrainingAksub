@@ -33,4 +33,30 @@ class BarangController extends Controller
 
         return redirect(route('managePage'));
     }
+
+    public function getUpdatePage($id){
+        $barang = Barang::find($id);
+
+        return view('edit',compact('barang'));
+    }
+
+    public function updateBarang(Request $request, $id){
+        $barang = Barang::find($id);
+
+        $barang->update([
+            'name' => $request->name,
+            'quantity' => $request->quantity,
+            'price' => $request->price
+        ]);
+
+        return redirect(route('managePage'));
+    }
+
+    public function deleteBarang($id){
+        $barang = Barang::find($id);
+
+        $barang->delete();
+
+        return redirect(route('managePage'));
+    }
 }

@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[BarangController::class, 'getManagePage'])->name('managePage');
 
-Route::get('/add',[BarangController::class, 'getAddPage'])->name('addPage');
+Route::prefix('barang')->group(function(){
+    Route::get('/add',[BarangController::class, 'getAddPage'])->name('addPage');
+    Route::post('/add',[BarangController::class, 'addBarang'])->name('addBarang');
+    Route::get('{id}/edit',[BarangController::class, 'getUpdatePage'])->name('updatePage');
+    Route::patch('{id}/edit',[BarangController::class,'updateBarang'])->name('updateBarang');
+    Route::delete('{id}/delete',[BarangController::class, 'deleteBarang'])->name('deleteBarang');
+});
 
-Route::post('/add',[BarangController::class, 'addBarang'])->name('addBarang');

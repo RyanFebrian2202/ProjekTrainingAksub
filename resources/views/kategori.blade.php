@@ -17,34 +17,15 @@
     <br><br>
     <div class="container bg-light rounded-3 pt-2 pb-2">
         <div class="col-md-12 bg-light table-wrapper">
-            <h3 style="font-weight: bold"><i class="uil uil-apps"></i> Manage Barang</h3>
+            <h3 style="font-weight: bold"><i class="uil uil-apps"></i> Manage Kategori</h3>
             <hr>
 
             {{-- Menu Bar --}}
             <header>
-                <a href="{{route('addPage')}}" class="btn btn-dark btn-sm mb-4" style="font-weight: bold">Tambah
-                    Barang</a>
-                <a href="{{route('manageKategori')}}" class="btn btn-dark btn-sm mb-4" style="font-weight: bold">Manage
+                <a href="{{route('kategoriAddPage')}}" class="btn btn-dark btn-sm mb-4" style="font-weight: bold">Tambah
                     Kategori</a>
-                <form class="d-flex" method="">
-                    <div class="search" style="display: flex">
-                        <input class="form-control me-2" name="search" type="search" placeholder="Cari Barang"
-                            aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </div>
-                    <div class="dropdown" style="margin-left: 10px">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li value="0" name="filter"><button name="filter" value="0" type="submit" class="dropdown-item">All</button></li>
-                            @foreach ($kategoris as $kategori)
-                                <li value="{{$kategori->id}}" name="filter"><button name="filter" value="{{$kategori->id}}" type="submit" class="dropdown-item">{{$kategori->name}}</button></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </form>
+                <a href="{{route('managePage')}}" class="btn btn-dark btn-sm mb-4" style="font-weight: bold">Manage
+                    Barang</a>
             </header>
             <br><br>
 
@@ -54,9 +35,6 @@
                     <tr align="center">
                         <th>#</th>
                         <th>Name</th>
-                        <th>Kategori</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -64,18 +42,15 @@
                     <?php
                     $nomor = 1;
                     ?>
-                    @foreach ($barangs as $barang)
+                    @foreach ($kategoris as $kategori)
                     <tr align="center">
                         <th>{{$nomor++}}</th>
-                        <td>{{$barang->name}}</td>
-                        <td>{{$barang->kategori->name}}</td>
-                        <td>{{$barang->quantity}}</td>
-                        <td>{{$barang->price}}</td>
+                        <td>{{$kategori->name}}</td>
                         <td class="aksi"
                             style="display: flex; justify-content: center; align-content: center; gap: 5px">
-                            <a class="edit" href="{{route('updatePage',['id'=>$barang->id])}}"><button type="submit"
+                            <a class="edit" href="{{route('kategoriEditPage',['id'=>$kategori->id])}}"><button type="submit"
                                     class="btn btn-success"><i class="uil uil-edit"></i></button></a>
-                            <form action="{{route('deleteBarang',['id'=>$barang->id])}}" method="post"
+                            <form action="{{route('deleteKategori',['id'=>$kategori->id])}}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('delete')

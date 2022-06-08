@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +23,14 @@ Route::prefix('barang')->group(function(){
     Route::get('{id}/edit',[BarangController::class, 'getUpdatePage'])->name('updatePage');
     Route::patch('{id}/edit',[BarangController::class,'updateBarang'])->name('updateBarang');
     Route::delete('{id}/delete',[BarangController::class, 'deleteBarang'])->name('deleteBarang');
+});
+
+Route::prefix('kategori')->group(function(){
+    Route::get('/manage',[KategoriController::class, 'getKategoriPage'])->name('manageKategori');
+    Route::get('/add',[KategoriController::class, 'kategoriAddPage'])->name('kategoriAddPage');
+    Route::post('/add',[KategoriController::class, 'addKategori'])->name('addKategori');
+    Route::get('{id}/edit',[KategoriController::class, 'kategoriEditPage'])->name('kategoriEditPage');
+    Route::patch('{id}/edit',[KategoriController::class, 'editKategori'])->name('editKategori');
+    Route::delete('{id}/delete',[KategoriController::class, 'deleteKategori'])->name('deleteKategori');
 });
 

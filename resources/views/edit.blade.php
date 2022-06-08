@@ -47,6 +47,22 @@
                     @error('price')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                    <div class="mb-3">
+                        <label for="kategori" class="form-label">
+                            Kategori
+                        </label>
+                        <select
+                            name="kategori_id"
+                            id="kategori"
+                            class="form-select"
+                        >
+                            @foreach ($kategoris as $kategori)
+                                <option value="{{$kategori->id}}" @if ($barang->kategori->id == $kategori->id)
+                                    selected
+                                @endif>{{$kategori->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div style="display: flex; justify-content: center; align-self: center;"">
                         <button class=" btn btn-success p-2 px-3" type="submit" style="font-weight: bold">
                         <b>Edit</b></button>
